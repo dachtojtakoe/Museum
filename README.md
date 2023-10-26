@@ -25,3 +25,15 @@ WPF + ASP.Net (Framework) system / MS SQL Server
 
 ![изображение](https://github.com/dachtojtakoe/Museum/assets/78024557/763dd15b-74a1-4dad-85ee-00230b854012)
 
+Страница расписания (после нажатия на "Прогулка по страницам истории" на главной странице
+
+![изображение](https://github.com/dachtojtakoe/Museum/assets/78024557/32c0f791-287b-49ca-be6c-51bb763bbb73)
+
+Окно оформления билета
+
+![изображение](https://github.com/dachtojtakoe/Museum/assets/78024557/3ae2f15b-7941-46bb-b383-50a05e183e43)
+
+После "Приобретения билета" на почту будет направлено письмо с билетом
+
+![изображение](https://github.com/dachtojtakoe/Museum/assets/78024557/6203e289-4673-441e-8317-08c59517dd6b)
+
