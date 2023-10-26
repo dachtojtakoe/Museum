@@ -37,3 +37,6 @@ WPF + ASP.Net (Framework) system / MS SQL Server
 
 ![изображение](https://github.com/dachtojtakoe/Museum/assets/78024557/6203e289-4673-441e-8317-08c59517dd6b)
 
+
+Диаграмма базы данных 
+![изображение](https://github.com/dachtojtakoe/Museum/assets/78024557/a2aa36cb-44f4-4ac3-9cf5-a259b52b4919)
