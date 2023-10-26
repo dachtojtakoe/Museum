@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище MuseumModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Authors">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="full_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Excursions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="extype_id" Type="int" Nullable="false" />
+    <Property Name="start_datetime" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="guide_id" Type="int" Nullable="false" />
+    <Property Name="deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="ExcursionTypes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="duration" Type="time" Precision="0" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="200" />
+    <Property Name="Image" Type="image" />
+    <Property Name="deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Exhibits">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="type_id" Type="int" Nullable="false" />
+    <Property Name="hall_id" Type="int" Nullable="false" />
+    <Property Name="author_id" Type="int" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="200" />
+    <Property Name="deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="ExhibitTypes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Halls">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tickets">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="full_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="phone_num" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="excursion_id" Type="int" Nullable="false" />
+    <Property Name="people_amount" Type="int" Nullable="false" />
+    <Property Name="totalprice" Type="int" Nullable="false" />
+    <Property Name="deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Workers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="login" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="role_id" Type="int" Nullable="false" />
+    <Property Name="deleted" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Excursions_ExcursionTypes">
+    <End Role="ExcursionTypes" Type="Self.ExcursionTypes" Multiplicity="1" />
+    <End Role="Excursions" Type="Self.Excursions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExcursionTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Excursions">
+        <PropertyRef Name="extype_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Excursions_Workers">
+    <End Role="Workers" Type="Self.Workers" Multiplicity="1" />
+    <End Role="Excursions" Type="Self.Excursions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Excursions">
+        <PropertyRef Name="guide_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Exhibits_Authors">
+    <End Role="Authors" Type="Self.Authors" Multiplicity="1" />
+    <End Role="Exhibits" Type="Self.Exhibits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Authors">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Exhibits">
+        <PropertyRef Name="author_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Exhibits_ExhibitTypes">
+    <End Role="ExhibitTypes" Type="Self.ExhibitTypes" Multiplicity="1" />
+    <End Role="Exhibits" Type="Self.Exhibits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExhibitTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Exhibits">
+        <PropertyRef Name="type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Exhibits_Halls1">
+    <End Role="Halls" Type="Self.Halls" Multiplicity="1" />
+    <End Role="Exhibits" Type="Self.Exhibits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Halls">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Exhibits">
+        <PropertyRef Name="hall_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tickets_Excursions1">
+    <End Role="Excursions" Type="Self.Excursions" Multiplicity="1" />
+    <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Excursions">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Tickets">
+        <PropertyRef Name="excursion_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workers_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Workers">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище MuseumModelContainer">
+    <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Excursions" EntityType="Self.Excursions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExcursionTypes" EntityType="Self.ExcursionTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Exhibits" EntityType="Self.Exhibits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExhibitTypes" EntityType="Self.ExhibitTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Halls" EntityType="Self.Halls" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tickets" EntityType="Self.Tickets" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Workers" EntityType="Self.Workers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Excursions_ExcursionTypes" Association="Self.FK_Excursions_ExcursionTypes">
+      <End Role="ExcursionTypes" EntitySet="ExcursionTypes" />
+      <End Role="Excursions" EntitySet="Excursions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Excursions_Workers" Association="Self.FK_Excursions_Workers">
+      <End Role="Workers" EntitySet="Workers" />
+      <End Role="Excursions" EntitySet="Excursions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Exhibits_Authors" Association="Self.FK_Exhibits_Authors">
+      <End Role="Authors" EntitySet="Authors" />
+      <End Role="Exhibits" EntitySet="Exhibits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Exhibits_ExhibitTypes" Association="Self.FK_Exhibits_ExhibitTypes">
+      <End Role="ExhibitTypes" EntitySet="ExhibitTypes" />
+      <End Role="Exhibits" EntitySet="Exhibits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Exhibits_Halls1" Association="Self.FK_Exhibits_Halls1">
+      <End Role="Halls" EntitySet="Halls" />
+      <End Role="Exhibits" EntitySet="Exhibits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tickets_Excursions1" Association="Self.FK_Tickets_Excursions1">
+      <End Role="Excursions" EntitySet="Excursions" />
+      <End Role="Tickets" EntitySet="Tickets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workers_Roles" Association="Self.FK_Workers_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Workers" EntitySet="Workers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

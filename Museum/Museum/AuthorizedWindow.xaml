@@ -1,0 +1,34 @@
+﻿<Window x:Class="Museum.AuthorizedWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Museum"
+        mc:Ignorable="d"
+       Title="" Height="694" Width="1336" Closing="Window_Closing" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Grid Name="MainGrid">
+        <Menu Name="MainMenu"  HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="1336" FontSize="16">
+            <MenuItem Name="ExcursionMenuItem" Header="Экскурсии" Click="GetDataExcursions" FontSize="16" />
+            <MenuItem Name="ExtypesMenuItem" Header="Виды экскурсий" Click="GetDataExtypes" FontSize="16" />
+            <MenuItem Name="TicketsMenuItem" Header="Билеты" Click="GetDataTickets" FontSize="16"/>
+            <MenuItem Name="ExhibitsMenuItem" Header="Экспонаты" Click="GetDataExhibits" FontSize="16"/>
+            <MenuItem Name="HallsMenuItem" Header="Залы"  Click="GetDataHalls" FontSize="16"/>
+            <MenuItem Name="ExhibittypesMenuItem" Header="Типы экспонатов" Click="GetDataTypes" FontSize="16" />
+            <MenuItem Name="WorkersMenuItem" Header="Работники" Click="GetDataWorkers" FontSize="16" />
+            <MenuItem Name="RolesMenuItem" Header="Должности" Click="GetDataRoles" FontSize="16" />
+            <MenuItem Name="AuthorsMenuItem" Header="Авторы" Click="GetDataAuthors" FontSize="16" />
+        </Menu>
+        <DataGrid  Name ="DataGrid" HorizontalAlignment="Left" Height="329" Margin="24,93,0,0" VerticalAlignment="Top" Width="1277" SelectionChanged="DataGrid_SelectionChanged" FontSize="14"  AutoGeneratingColumn="DataGrid_AutoGeneratingColumn_1"/>
+        <DataGrid Name="AdditionalGrid"  HorizontalAlignment="Left" Height="195" Margin="626,427,0,0" VerticalAlignment="Top" Width="675" FontSize="14"/>
+        <Button Name="CreateButton" Content="Создать" HorizontalAlignment="Left" Margin="24,427,0,0" VerticalAlignment="Top" Width="114" Click="CreateButton_Click" FontSize="16"/>
+        <Button Name="EditButton" Content="Редактировать" HorizontalAlignment="Left" Margin="144,427,0,0" VerticalAlignment="Top" Width="114" Click="EditButton_Click" FontSize="16"/>
+        <Button Name="DeleteButton" Content="Удалить" HorizontalAlignment="Left" Margin="264,427,0,0" VerticalAlignment="Top" Width="114" Click="DeleteButton_Click" FontSize="16"/>
+        <TextBox x:Name="SearchBox"  HorizontalAlignment="Left" Height="24" Margin="87,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="286" TextChanged="SearchBox_TextChanged" FontSize="16"/>
+        <Label x:Name="SearchLabel" Content="Поиск" HorizontalAlignment="Left" Margin="24,57,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Button x:Name="BuyTicket" Content="Выдать билет" HorizontalAlignment="Left" Margin="24,483,0,0" VerticalAlignment="Top" Width="116" Click="BuyTicket_Click" FontSize="16"/>
+        <Image Name="ExcursionImage" HorizontalAlignment="Left" Height="209" Margin="472,427,0,0" VerticalAlignment="Top" Width="340"/>
+        <CheckBox Name="OnlyMyExcursions" Content="Только мои экскурсии" HorizontalAlignment="Left" Margin="24,458,0,0" VerticalAlignment="Top" FontSize="16" Click="OnlyMyExcursions_Click"/>
+        <CheckBox x:Name="NonActualExcursions" Content="Не актуальные экскурсии" HorizontalAlignment="Left" Margin="24,514,0,0" VerticalAlignment="Top" FontSize="16" Click="NonActualExcursions_Click"/>
+
+    </Grid>
+</Window>

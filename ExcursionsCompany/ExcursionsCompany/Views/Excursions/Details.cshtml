@@ -1,0 +1,100 @@
+﻿@model ExcursionsCompany.Models.Excursions
+
+@{
+    ViewBag.Title = "Билет";
+}
+
+<h2>Оформление билета</h2>
+
+
+<div>
+    <dl class="dl-horizontal">
+
+        <dt>
+            Название экскурсии
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExcursionTypes.name)
+        </dd>
+
+        <dt>
+            Дата и время начала экскурсии
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.start_datetime)
+        </dd>
+
+        <dt>
+            Цена билета за человека
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price) Руб.
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.Label("", "ФИО", new { htmlAttributes = new { @class = "control-label" } })
+            @Html.Editor("full_name", "", new { htmlAttributes = new { @class = "form-group form-control" } })
+
+        </div>
+        <div class="form-group">
+            @Html.Label("", "Номер телефона", new { htmlAttributes = new { @class = "control-label" } })
+            @Html.Editor("phone_num", "", new { htmlAttributes = new { @class = "form-group form-control" } })
+
+        </div>
+        <div class="form-group">
+            @Html.Label("", "Электронная почта", new { htmlAttributes = new { @class = "control-label" } })
+            @Html.Editor("email", "", new { htmlAttributes = new { @class = "form-group form-control" } })
+        </div>
+
+        <div class="form-group" style="display:none">
+            @Html.Label("", "Номер экскурсии", new { htmlAttributes = new { @class = "control-label" } })
+            @Html.Editor("excursion_id", "", new { htmlAttributes = new { @class = "form-group form-control", Value = Model.id } })
+
+        </div>
+
+        <div class="form-group">
+            @Html.Label("", "Количество человек", new { htmlAttributes = new { @class = "control-label" } })
+            @Html.Editor("people_amount", "", new { htmlAttributes = new { @class = "form-control", type = "number", id = "amount", Value = 1 } })
+        </div>
+
+        <div class="form-group">
+            @Html.Label("", "Итоговая стоимость", new { htmlAttributes = new { @class = "control-label" } })
+            @Html.Editor("totalprice", "Руб.", new { htmlAttributes = new { @class = "form-group form-control", id = "totalprice", Value = Model.price, @readonly = "readonly" } })
+        </div>
+
+
+
+        <input type="submit" value="Приобрести" class="btn btn-outline-secondary" style="margin-top:10px" />
+    }
+
+
+
+</div>
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@
+
+<script>
+                var counterInput1 = document.getElementById("amount");
+                var counterInput2 = document.getElementById("totalprice");
+
+                counterInput1.addEventListener("input", function () {
+                    if (counterInput1.value > 0) {
+                        counterInput2.value = counterInput1.value * @Model.price ;
+                    }
+                    else {
+                        counterInput1.value = 1;
+                    }
+                });
+
+
+</script>

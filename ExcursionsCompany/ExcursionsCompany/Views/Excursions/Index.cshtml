@@ -1,0 +1,82 @@
+﻿@model IEnumerable<ExcursionsCompany.Models.Excursions>
+
+@{
+    ViewBag.Title = "Расписание";
+}
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-group" style="margin-left: 10px">
+        @Html.Label("", "Найти по названию:",  new { @class = "font-weight-bold" } )
+        @Html.Editor("searchString", "", new { htmlAttributes = new { @class = "form-group form-control" } })
+        <input type="submit" value="Поиск" class="btn btn-outline-secondary btn-sm" style="margin-top:5px" />
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Название экскурсии
+        </th>
+        <th>
+            Начало экскурсии
+        </th>
+        <th>Длительность</th>
+
+
+        <th>
+            Гид
+        </th>
+        <th></th>
+        <th></th>
+        <th>
+            Цена за человека
+        </th>
+        <th></th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.deleted != true)
+        {
+            if (item.start_datetime > DateTime.Now)
+            {
+                if (item.Tickets.Where(c=>c.excursion_id == item.id).Count() < 15)
+                {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExcursionTypes.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.start_datetime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExcursionTypes.duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Workers.surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Workers.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Workers.patronymic)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.price) Руб.
+            </td>
+            <td>
+
+                @Html.ActionLink("Приобрести билет", "Details", new { id = item.id }, new { @class = "btn btn-outline-secondary btn-sm" })
+
+            </td>
+        </tr>
+                }
+            }
+        }
+    }
+
+</table>

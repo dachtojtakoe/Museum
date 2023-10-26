@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="38f0dbdd3cb1403ba01b700c03c7b5a9" Name="Diagram1" ZoomLevel="97">
+        <EntityTypeShape EntityType="MuseumModel.Authors" Width="1.5" PointX="3.125" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuseumModel.Excursions" Width="1.5" PointX="7.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuseumModel.ExcursionTypes" Width="1.5" PointX="7.875" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuseumModel.Exhibits" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuseumModel.ExhibitTypes" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuseumModel.Halls" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuseumModel.Roles" Width="1.5" PointX="5.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuseumModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuseumModel.Tickets" Width="1.5" PointX="9.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuseumModel.Workers" Width="1.5" PointX="5" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="MuseumModel.FK_Exhibits_Authors" ManuallyRouted="false" />
+        <AssociationConnector Association="MuseumModel.FK_Excursions_ExcursionTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="MuseumModel.FK_Excursions_Workers" ManuallyRouted="false" />
+        <AssociationConnector Association="MuseumModel.FK_Tickets_Excursions1" ManuallyRouted="false" />
+        <AssociationConnector Association="MuseumModel.FK_Exhibits_ExhibitTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="MuseumModel.FK_Exhibits_Halls1" ManuallyRouted="false" />
+        <AssociationConnector Association="MuseumModel.FK_Workers_Roles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

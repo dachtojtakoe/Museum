@@ -1,0 +1,136 @@
+﻿@model IEnumerable<ExcursionsCompany.Models.ExcursionTypes>
+
+@{
+    ViewBag.Title = "Экскурсии";
+}
+
+
+
+<div class="abs" >
+
+    @foreach (var item in Model)
+    {
+        if (item.deleted != true)
+        {
+
+
+            byte[] photo = item.Image;
+            string imageSrc = null;
+            if (photo != null)
+            {
+                MemoryStream ms = new MemoryStream();
+                ms.Write(photo, 0, photo.Length);
+                string imageBase64 = Convert.ToBase64String(ms.ToArray());
+                imageSrc = string.Format("data:image/jpg;base64,{0}", imageBase64);
+                string base64String = Convert.ToBase64String(photo, 0, photo.Length);
+            }
+
+
+        <div class="post-item">     
+            <div class="post-item-wrap" style="background-image: url(@imageSrc) ">
+                <div href="/Excursions/index" class="post-content">
+                    <div href="" class="topbars">
+                        @*<h3 class="post-title">@item.name</h3>*@
+                        @Html.ActionLink(item.name, "Index", "Excursions", new { searchString = item.name }, new { @class = "post-title" })
+                        <div class="post-content">@item.description</div>
+                    </div>
+
+
+                    <div class="downbar">
+                        <div class="post-content" style="font-size:12px; margin-left:15px; margin-bottom: 5px; border-radius: 20px;  backdrop-filter: blur(10px); background-color: rgba(255, 255, 255, 0.45); ">Продолжительность экскурсии: @item.duration</div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+     }
+</div>
+
+
+<style>
+    .topbars {
+        background-color: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 5px;
+        padding-left: 40px;
+        margin-top:20px;
+    }
+
+    .downbar {
+        position: absolute;
+        bottom: 0px;
+    }
+
+
+    .abs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    * {
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .post-item {
+        padding: 10px;
+    }
+
+    .post-item-wrap {
+        background: #F7F7F2;
+        height: 400px;
+        position: relative;
+        background-size: 650px 400px;
+        border-radius: 20px;
+    }
+
+        .post-item-wrap:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #4F2D1F;
+            transform: rotate(1deg);
+            transform-origin: left bottom;
+            transition: .2s ease-in-out;
+            border-radius: 20px;
+        }
+
+        .post-item-wrap:hover:after {
+            top: 5px;
+            left: 5px;
+            transform: rotate(1deg);
+        }
+
+    .post-content {
+        text-decoration: none;
+        display: grid;
+        padding: 15px;
+        font-size: 18px;
+        color: black;
+    }
+
+    .post-title {
+        color: #33261D;
+        margin-bottom: 15px;
+        transition: .3s ease-in-out;
+        font-size: 30px;
+        text-decoration: none;
+    }
+
+
+    .post-item-wrap:hover .post-title {
+        color: maroon;
+        text-decoration: underline;
+    }
+    /*#c4c4b3*/
+    /*#1aba8b*/
+    /*#1DE1A7*/
+    /*#b5b51f*/
+
+</style>

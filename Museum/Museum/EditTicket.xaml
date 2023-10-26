@@ -1,0 +1,30 @@
+﻿<Window x:Class="Museum.EditTicket"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Museum"
+        mc:Ignorable="d"
+                Title="Изменение билета" Height="285.833" Width="351.348" Closing="Window_Closing" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <TextBox Name="FullNameTextBox" HorizontalAlignment="Left" Height="23" Margin="10,43,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="308"/>
+        <TextBox Name="PhoneTextBox" HorizontalAlignment="Left" Height="24" Margin="10,92,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="308"/>
+        <Label Content="ФИО" HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top"/>
+        <Label Content="Номер телефона" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top"/>
+        <Label Content="Почта" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top"/>
+        <TextBox IsEnabled="False" Name="PeopleAmount" HorizontalAlignment="Left" Height="20" Margin="48,202,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="16" FontSize="14"/>
+        <Label Name="PeopleAmountLabel"  Content="Кол-во людей" HorizontalAlignment="Left" Margin="14,176,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="91">
+        </Label>
+        <Label Name="PriceLabel" Content="Сумма билета" HorizontalAlignment="Left" Margin="216,178,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="104">
+
+        </Label>
+        <TextBox x:Name="SummTextBox" IsEnabled="False" HorizontalAlignment="Left" Height="20" Margin="224,204,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="73" FontSize="16"/>
+        <TextBox x:Name="EmailTextBox" HorizontalAlignment="Left" Height="22" Margin="10,142,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="308"/>
+        <Button x:Name="PeopleAmountDown" Content="-" HorizontalAlignment="Left" Margin="24,202,0,0" VerticalAlignment="Top" Width="20" FontSize="14" Height="20" Click="PeopleAmountDown_Click"/>
+        <Button x:Name="PeopleAmountUp" Content="+" HorizontalAlignment="Left" Margin="70,202,0,0" VerticalAlignment="Top" Width="20" FontSize="14" Height="20" RenderTransformOrigin="0.9,0.45" Click="PeopleAmountUp_Click"/>
+        <Button x:Name="SaveButton" Content="Сохранить" HorizontalAlignment="Left" Margin="128,182,0,0" VerticalAlignment="Top" Width="74" Click="SaveButton_Click"/>
+        <Button x:Name="BuyButton" Content="Выдать" HorizontalAlignment="Left" Margin="128,209,0,0" VerticalAlignment="Top" Width="74" Click="CreateButton_Click"/>
+
+    </Grid>
+</Window>

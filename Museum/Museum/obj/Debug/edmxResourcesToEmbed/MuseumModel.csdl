@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MuseumModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Authors">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="full_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="deleted" Type="Boolean" />
+    <NavigationProperty Name="Exhibits" Relationship="Self.FK_Exhibits_Authors" FromRole="Authors" ToRole="Exhibits" />
+  </EntityType>
+  <EntityType Name="Excursions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="extype_id" Type="Int32" Nullable="false" />
+    <Property Name="start_datetime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="price" Type="Int32" Nullable="false" />
+    <Property Name="guide_id" Type="Int32" Nullable="false" />
+    <Property Name="deleted" Type="Boolean" />
+    <NavigationProperty Name="ExcursionTypes" Relationship="Self.FK_Excursions_ExcursionTypes" FromRole="Excursions" ToRole="ExcursionTypes" />
+    <NavigationProperty Name="Workers" Relationship="Self.FK_Excursions_Workers" FromRole="Excursions" ToRole="Workers" />
+    <NavigationProperty Name="Tickets" Relationship="Self.FK_Tickets_Excursions1" FromRole="Excursions" ToRole="Tickets" />
+  </EntityType>
+  <EntityType Name="ExcursionTypes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="duration" Type="Time" Nullable="false" Precision="0" />
+    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="deleted" Type="Boolean" />
+    <NavigationProperty Name="Excursions" Relationship="Self.FK_Excursions_ExcursionTypes" FromRole="ExcursionTypes" ToRole="Excursions" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Exhibits">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="type_id" Type="Int32" Nullable="false" />
+    <Property Name="hall_id" Type="Int32" Nullable="false" />
+    <Property Name="author_id" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="deleted" Type="Boolean" />
+    <NavigationProperty Name="Authors" Relationship="Self.FK_Exhibits_Authors" FromRole="Exhibits" ToRole="Authors" />
+    <NavigationProperty Name="ExhibitTypes" Relationship="Self.FK_Exhibits_ExhibitTypes" FromRole="Exhibits" ToRole="ExhibitTypes" />
+    <NavigationProperty Name="Halls" Relationship="Self.FK_Exhibits_Halls1" FromRole="Exhibits" ToRole="Halls" />
+  </EntityType>
+  <EntityType Name="ExhibitTypes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="deleted" Type="Boolean" />
+    <NavigationProperty Name="Exhibits" Relationship="Self.FK_Exhibits_ExhibitTypes" FromRole="ExhibitTypes" ToRole="Exhibits" />
+  </EntityType>
+  <EntityType Name="Halls">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="deleted" Type="Boolean" />
+    <NavigationProperty Name="Exhibits" Relationship="Self.FK_Exhibits_Halls1" FromRole="Halls" ToRole="Exhibits" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="deleted" Type="Boolean" />
+    <NavigationProperty Name="Workers" Relationship="Self.FK_Workers_Roles" FromRole="Roles" ToRole="Workers" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tickets">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="full_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone_num" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="excursion_id" Type="Int32" Nullable="false" />
+    <Property Name="people_amount" Type="Int32" Nullable="false" />
+    <Property Name="totalprice" Type="Int32" Nullable="false" />
+    <Property Name="deleted" Type="Boolean" />
+    <NavigationProperty Name="Excursions" Relationship="Self.FK_Tickets_Excursions1" FromRole="Tickets" ToRole="Excursions" />
+  </EntityType>
+  <EntityType Name="Workers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="role_id" Type="Int32" Nullable="false" />
+    <Property Name="deleted" Type="Boolean" />
+    <NavigationProperty Name="Excursions" Relationship="Self.FK_Excursions_Workers" FromRole="Workers" ToRole="Excursions" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK_Workers_Roles" FromRole="Workers" ToRole="Roles" />
+  </EntityType>
+  <Association Name="FK_Exhibits_Authors">
+    <End Role="Authors" Type="Self.Authors" Multiplicity="1" />
+    <End Role="Exhibits" Type="Self.Exhibits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Authors">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Exhibits">
+        <PropertyRef Name="author_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Excursions_ExcursionTypes">
+    <End Role="ExcursionTypes" Type="Self.ExcursionTypes" Multiplicity="1" />
+    <End Role="Excursions" Type="Self.Excursions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExcursionTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Excursions">
+        <PropertyRef Name="extype_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Excursions_Workers">
+    <End Role="Workers" Type="Self.Workers" Multiplicity="1" />
+    <End Role="Excursions" Type="Self.Excursions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Excursions">
+        <PropertyRef Name="guide_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tickets_Excursions1">
+    <End Role="Excursions" Type="Self.Excursions" Multiplicity="1" />
+    <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Excursions">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Tickets">
+        <PropertyRef Name="excursion_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Exhibits_ExhibitTypes">
+    <End Role="ExhibitTypes" Type="Self.ExhibitTypes" Multiplicity="1" />
+    <End Role="Exhibits" Type="Self.Exhibits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExhibitTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Exhibits">
+        <PropertyRef Name="type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Exhibits_Halls1">
+    <End Role="Halls" Type="Self.Halls" Multiplicity="1" />
+    <End Role="Exhibits" Type="Self.Exhibits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Halls">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Exhibits">
+        <PropertyRef Name="hall_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workers_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Workers">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MuseumEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Authors" EntityType="Self.Authors" />
+    <EntitySet Name="Excursions" EntityType="Self.Excursions" />
+    <EntitySet Name="ExcursionTypes" EntityType="Self.ExcursionTypes" />
+    <EntitySet Name="Exhibits" EntityType="Self.Exhibits" />
+    <EntitySet Name="ExhibitTypes" EntityType="Self.ExhibitTypes" />
+    <EntitySet Name="Halls" EntityType="Self.Halls" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Tickets" EntityType="Self.Tickets" />
+    <EntitySet Name="Workers" EntityType="Self.Workers" />
+    <AssociationSet Name="FK_Exhibits_Authors" Association="Self.FK_Exhibits_Authors">
+      <End Role="Authors" EntitySet="Authors" />
+      <End Role="Exhibits" EntitySet="Exhibits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Excursions_ExcursionTypes" Association="Self.FK_Excursions_ExcursionTypes">
+      <End Role="ExcursionTypes" EntitySet="ExcursionTypes" />
+      <End Role="Excursions" EntitySet="Excursions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Excursions_Workers" Association="Self.FK_Excursions_Workers">
+      <End Role="Workers" EntitySet="Workers" />
+      <End Role="Excursions" EntitySet="Excursions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tickets_Excursions1" Association="Self.FK_Tickets_Excursions1">
+      <End Role="Excursions" EntitySet="Excursions" />
+      <End Role="Tickets" EntitySet="Tickets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Exhibits_ExhibitTypes" Association="Self.FK_Exhibits_ExhibitTypes">
+      <End Role="ExhibitTypes" EntitySet="ExhibitTypes" />
+      <End Role="Exhibits" EntitySet="Exhibits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Exhibits_Halls1" Association="Self.FK_Exhibits_Halls1">
+      <End Role="Halls" EntitySet="Halls" />
+      <End Role="Exhibits" EntitySet="Exhibits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workers_Roles" Association="Self.FK_Workers_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Workers" EntitySet="Workers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
